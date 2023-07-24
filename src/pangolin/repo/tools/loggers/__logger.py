@@ -80,7 +80,7 @@ class Logger:
 
     def __init__(self):
         self.__request: dict | None = None
-        self.__log: Log = Log()
+        self.log: Log = Log()
         self.__response: dict | None = None
 
     def set_request(self, value: HttpRequest):
@@ -112,7 +112,7 @@ class Logger:
 
     def __logs_add_to_db(self):
         LogModel.objects.bulk_create(
-            [LogModel(request=self.__request_obj, **i) for i in self.__log.export()])
+            [LogModel(request=self.__request_obj, **i) for i in self.log.export()])
 
     def __response_add_to_db(self):
         inst = ResponseModel(request=self.__request_obj, **self.__response)
