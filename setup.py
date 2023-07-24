@@ -15,7 +15,7 @@ setuptools.setup(
     project_urls={
         'Documentation': 'https://github.com/navidsoleymani/pangolin.git',
         'Bug Reports':
-        'https://github.com/navidsoleymani/pangolin.git/issues',
+            'https://github.com/navidsoleymani/pangolin.git/issues',
         'Source Code': 'https://github.com/navidsoleymani/pangolin.git',
     },
     package_dir={'': 'src'},
@@ -35,6 +35,10 @@ setuptools.setup(
     ],
     python_requires='>=3.8',
     install_requires=[
-
+        'Django',
+        'django-user-agents',
+        'djangorestframework',
+        'python-dotenv',
+        'python-secrets',
     ],
 )
