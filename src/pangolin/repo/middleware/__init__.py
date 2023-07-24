@@ -1,1 +1,1 @@
-from .__create_logger_instance import LoggerInstanceMiddleware
+from .__create_logger import LoggerMiddleware
