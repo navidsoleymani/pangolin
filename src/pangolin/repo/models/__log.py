@@ -12,6 +12,7 @@ class Log(models.Model):
     )
     typ = models.CharField(
         verbose_name=_('Type'),
+        max_length=15,
         blank=False,
         null=False,
     )
