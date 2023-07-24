@@ -56,8 +56,9 @@ class Logger:
         ret = True
         try:
             from django.conf import settings
-            ret = settings.DEBUG.lower() == 'true'
-        except:
+            ret = str(settings.DEBUG).lower() == 'true'
+        except Exception as exc:
+            self.exception(str(exc.args[0]))
             ret = True
         finally:
             return ret
