@@ -10,78 +10,99 @@ from pangolin.models import (
     ResponsePropertyModel,
 )
 
+ERROR = 'ERROR'
+WARNING = 'WARNING'
+DEBUG = 'DEBUG'
+EXCEPTION = 'EXCEPTION'
+INFO = 'INFO'
+
+from background_task import background
+
 
 class Log:
-    def __init__(self):
-        self.__repository: list = list()
+    __repository: list = list()
 
-        self.__ERROR = 'ERROR'
-        self.__WARNING = 'WARNING'
-        self.__DEBUG = 'DEBUG'
-        self.__EXCEPTION = 'EXCEPTION'
-        self.__INFO = 'INFO'
+    __error_messages: list = list()
+    __warning_messages: list = list()
+    __debug_messages: list = list()
+    __exception_messages: list = list()
+    __info_messages: list = list()
 
     def error(self, message: str, extra: dict | None = None):
         self.__repository.append(
             {
-                'typ': self.__ERROR,
+                'typ': ERROR,
                 'msg': message,
                 'datetime': datetime.now(),
                 'extra': extra or dict(),
             }
         )
+        self.__error_messages.append(message)
 
     def warning(self, message: str, extra: dict | None = None):
         self.__repository.append(
             {
-                'typ': self.__WARNING,
+                'typ': WARNING,
                 'msg': message,
                 'datetime': datetime.now(),
                 'extra': extra or dict(),
             }
         )
+        self.__warning_messages.append(message)
 
     def debug(self, message: str, extra: dict | None = None):
         self.__repository.append(
             {
-                'typ': self.__DEBUG,
+                'typ': DEBUG,
                 'msg': message,
                 'datetime': datetime.now(),
                 'extra': extra or dict(),
             }
         )
+        self.__debug_messages.append(message)
 
     def exception(self, message: str, extra: dict | None = None):
         self.__repository.append(
             {
-                'typ': self.__EXCEPTION,
+                'typ': EXCEPTION,
                 'msg': message,
                 'datetime': datetime.now(),
                 'extra': extra or dict(),
             }
         )
+        self.__exception_messages.append(message)
 
     def info(self, message: str, extra: dict | None = None):
         self.__repository.append(
             {
-                'typ': self.__INFO,
+                'typ': INFO,
                 'msg': message,
                 'datetime': datetime.now(),
                 'extra': extra or dict(),
             }
         )
+        self.__info_messages.append(message)
 
     def export(self):
         return self.__repository
 
+    def messages(self, debug=True):
+        ret = {
+            'error': self.__error_messages,
+            'warning': self.__warning_messages,
+            'debug': self.__debug_messages if debug else [],
+            'exception': self.__exception_messages if debug else [],
+            'info': self.__info_messages,
+        }
+        return ret
+
 
 class Logger:
-    __debug: bool | None = None
 
-    def __init__(self):
-        self.__request: dict | None = None
-        self.log: Log = Log()
-        self.__response: dict | None = None
+    def __init__(self, debug=True):
+        self.__debug = debug
+
+    __request: dict | None = None
 
     def set_request(self, value: HttpRequest):
         self.__request = {
@@ -89,6 +110,10 @@ class Logger:
             'datetime': datetime.now(),
             'extra': {}
         }
+
+    log: Log = Log()
+
+    __response: dict | None = None
 
     def set_response(self, value: HttpResponse):
         self.__response = {
@@ -98,6 +123,7 @@ class Logger:
         }
         self.__add_to_db()
 
+    @background(schedule=10)
     def __add_to_db(self):
         self.__request_add_to_db()
         self.__logs_add_to_db()
@@ -118,29 +144,5 @@ class Logger:
         inst = ResponseModel(request=self.__request_obj, **self.__response)
         inst.save()
 
-    @property
-    def debug(self):
-        return self.__debug
-
-    @debug.setter
-    def debug(self, value: bool):
-        self.__debug = value
-
-    @property
-    def __django_debug(self):
-        ret = None
-        try:
-            from django.conf import settings
-            ret = str(settings.DEBUG).lower() == 'true'
-        except:
-            pass
-        finally:
-            return ret
-
-    def __debug_status(self):
-        if self.debug is not None:
-            return self.debug
-        if self.__django_debug is not None:
-            return self.__django_debug
-
-        return True
+    def messages(self):
+        return self.log.messages(self.__debug)
