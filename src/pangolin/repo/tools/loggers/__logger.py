@@ -16,8 +16,6 @@ DEBUG = 'DEBUG'
 EXCEPTION = 'EXCEPTION'
 INFO = 'INFO'
 
-from background_task import background
-
 
 class Log:
     __repository: list = list()
@@ -123,7 +121,6 @@ class Logger:
         }
         self.__add_to_db()
 
-    @background(schedule=10)
     def __add_to_db(self):
         self.__request_add_to_db()
         self.__logs_add_to_db()
