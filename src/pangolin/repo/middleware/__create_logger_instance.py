@@ -1,6 +1,6 @@
 from django.utils.deprecation import MiddlewareMixin
 
-from pangolin.repo.tools import logger
+from pangolin.repo.tools.loggers import logger
 
 
 class LoggerInstanceMiddleware(MiddlewareMixin):
