@@ -35,4 +35,5 @@ class LoggerDBRouter(object):
 
     def allow_migrate(self, db, app_label, model_name=None, **hints):
         ret = self.LOGGER_DB == db if model_name in self.__model_name_list else self.DEFAULT == db
+        print(f'{db}::{model_name}::{ret}')
         return ret
