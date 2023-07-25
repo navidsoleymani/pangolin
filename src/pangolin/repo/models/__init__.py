@@ -22,7 +22,7 @@ class LoggerDBRouter(object):
 
     @property
     def __model_name_list(self):
-        ret = [c.__name__ for c in self.__model_list]
+        ret = [c.__name__.lower() for c in self.__model_list]
         return ret
 
     def db_for_read(self, model, **hints):
