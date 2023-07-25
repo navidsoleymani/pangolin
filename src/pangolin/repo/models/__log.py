@@ -30,3 +30,6 @@ class Log(models.Model):
         blank=True,
         null=True,
     )
+
+    class Meta:
+        using = 'logger'
