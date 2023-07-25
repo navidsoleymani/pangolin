@@ -1,3 +1,4 @@
+from background_task import background
 from datetime import datetime
 from django.http.request import HttpRequest
 from django.http.response import HttpResponse
@@ -121,6 +122,7 @@ class Logger:
         }
         self.__add_to_db()
 
+    @background(schedule=10)
     def __add_to_db(self):
         self.__request_add_to_db()
         self.__logs_add_to_db()

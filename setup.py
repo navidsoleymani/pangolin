@@ -39,6 +39,11 @@ setuptools.setup(
         'django-user-agents',
         'djangorestframework',
         'python-dotenv',
-        'django-background-tasks-updated',
+        'django-background-tasks'
     ],
 )
+
+
+
+
+
