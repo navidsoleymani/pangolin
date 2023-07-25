@@ -23,4 +23,4 @@ class ResponseProperty(models.Model):
     )
 
     class Meta:
-        using = 'logger'
+        db_table = 'logger'
