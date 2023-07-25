@@ -25,5 +25,3 @@ class Response(models.Model):
         null=True,
     )
 
-    class Meta:
-        db_label = 'logger'

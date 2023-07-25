@@ -5,3 +5,5 @@ from .repo.models import (
     ResponseModel,
     ResponsePropertyModel,
 )
+
+from .repo.models import LoggerDBRouter

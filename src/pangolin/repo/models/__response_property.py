@@ -21,6 +21,3 @@ class ResponseProperty(models.Model):
         blank=True,
         null=True,
     )
-
-    class Meta:
-        db_label = 'logger'

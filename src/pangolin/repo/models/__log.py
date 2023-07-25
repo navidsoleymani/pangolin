@@ -31,5 +31,3 @@ class Log(models.Model):
         null=True,
     )
 
-    class Meta:
-        db_label = 'logger'
