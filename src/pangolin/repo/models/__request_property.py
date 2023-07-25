@@ -23,4 +23,4 @@ class RequestProperty(models.Model):
     )
 
     class Meta:
-        db_table = 'logger'
+        db_label = 'logger'
