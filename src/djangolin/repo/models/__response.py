@@ -5,7 +5,7 @@ from django.db import models
 class Response(models.Model):
     request = models.ForeignKey(
         verbose_name=_('Request'),
-        to='pangolin.Request',
+        to='djangolin.Request',
         on_delete=models.CASCADE,
         blank=False,
         null=False,

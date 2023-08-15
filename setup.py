@@ -4,7 +4,7 @@ with open('README.md', 'r', encoding='utf-8') as f:
     long_description = f.read()
 
 setuptools.setup(
-    name='pangolin',
+    name='djangolin',
     author='Hydra',
     author_email='navidsoleymani@ymail.com',
     description='A logger to log everything that starts with a request and ends with a response.',
@@ -39,10 +39,6 @@ setuptools.setup(
         'django-user-agents',
         'djangorestframework',
         'python-dotenv',
+        'scrapeasy',
     ],
 )
-
-
-
-
-

@@ -1,4 +1,4 @@
-# Pangolin
+# Djangolin
 
 [![License](https://img.shields.io/github/license/tomchen/example_pypi_package)](https://github.com/tomchen/example_pypi_package/blob/main/LICENSE)
 

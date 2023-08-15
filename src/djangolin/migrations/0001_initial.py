@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                 ('status_code', models.PositiveSmallIntegerField(default=200, verbose_name='Status Code')),
                 ('datetime', models.DateField(verbose_name='Created Date Time')),
                 ('extra', models.JSONField(blank=True, null=True, verbose_name='Extra Information')),
-                ('request', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='pangolin.request', verbose_name='Request')),
+                ('request', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='djangolin.request', verbose_name='Request')),
             ],
         ),
         migrations.CreateModel(
@@ -35,7 +35,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('key', models.CharField(max_length=255, verbose_name='Key')),
                 ('value', models.TextField(blank=True, null=True, verbose_name='Value')),
-                ('response', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='pangolin.response', verbose_name='Response')),
+                ('response', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='djangolin.response', verbose_name='Response')),
             ],
         ),
         migrations.CreateModel(
@@ -44,7 +44,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('key', models.CharField(max_length=255, verbose_name='Key')),
                 ('value', models.TextField(blank=True, null=True, verbose_name='Value')),
-                ('request', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='pangolin.request', verbose_name='Request')),
+                ('request', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='djangolin.request', verbose_name='Request')),
             ],
         ),
         migrations.CreateModel(
@@ -55,7 +55,7 @@ class Migration(migrations.Migration):
                 ('msg', models.TextField(verbose_name='Message')),
                 ('datetime', models.DateField(verbose_name='Created Date Time')),
                 ('extra', models.JSONField(blank=True, null=True, verbose_name='Extra Information')),
-                ('request', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='pangolin.request', verbose_name='Request')),
+                ('request', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='djangolin.request', verbose_name='Request')),
             ],
         ),
     ]

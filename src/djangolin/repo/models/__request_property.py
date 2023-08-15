@@ -2,10 +2,10 @@ from django.utils.translation import gettext_lazy as _
 from django.db import models
 
 
-class ResponseProperty(models.Model):
-    response = models.ForeignKey(
-        verbose_name=_('Response'),
-        to='pangolin.Response',
+class RequestProperty(models.Model):
+    request = models.ForeignKey(
+        verbose_name=_('Request'),
+        to='djangolin.Request',
         on_delete=models.CASCADE,
         blank=False,
         null=False,
@@ -21,3 +21,4 @@ class ResponseProperty(models.Model):
         blank=True,
         null=True,
     )
+

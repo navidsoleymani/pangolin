@@ -2,7 +2,7 @@ from datetime import datetime
 from django.http.request import HttpRequest
 from django.http.response import HttpResponse
 
-from pangolin.models import (
+from djangolin.models import (
     RequestModel,
     RequestPropertyModel,
     LogModel,
